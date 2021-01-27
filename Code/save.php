@@ -26,7 +26,7 @@ if (isset($_POST['reg_user'])) {
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
-    if ($row['email'] === $email) {
+    if($email==isset($row['email'])){
         header('location: signup.php?alreadyregisteredmailerr=true');
         exit;
     }
@@ -38,5 +38,5 @@ VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . 
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
         mysqli_close($conn);
-    }
+}
 ?>
