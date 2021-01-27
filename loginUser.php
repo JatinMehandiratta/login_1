@@ -8,6 +8,7 @@ error_reporting(E_ALL);
 if (isset($_POST['login_user'])) {
     $email = $conn->real_escape_string($_POST['email']);
     $password = $conn->real_escape_string($_POST['password']);
+    
 
     $sql = "SELECT *  FROM user_table  WHERE email = '$email' ";
 
