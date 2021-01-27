@@ -29,7 +29,7 @@ if (isset($_POST['reg_user'])) {
     if ($row['email'] === $email) {
         header('location: signup.php?alreadyregisteredmailerr=true');
         exit;
-    } else {
+    }
         $sql = "INSERT INTO user_table (firstname, lastname, age,email,gender,occupation,password ,confirm_password)
 VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . "','" . $gender . "','" . $occupation . "','" . $password . "','" . $confirmPassword . "')";
         if (mysqli_query($conn, $sql)) {
@@ -39,5 +39,4 @@ VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . 
         }
         mysqli_close($conn);
     }
-}
 ?>
