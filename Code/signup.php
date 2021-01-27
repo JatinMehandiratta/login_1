@@ -9,13 +9,13 @@
 <body>
   <?php 
    if(isset ($_GET['passwordmatcherr']))  {
- echo '<div class="alert alert-danger">The two passwords do not match</div>
- }
-   if (isset ($_GET['alreadyregisteredmailerr'])) {
-        echo '<div class="alert alert-danger">This Email is already registered with us Try Using another Email</div>';
-
+    echo '<div class="alert alert-danger">The two passwords do not match</div>';
    }
+   if (isset ($_GET['alreadyregisteredmailerr'])) {
+    echo '<div class="alert alert-danger">This Email is already registered with us Try Using another Email</div>';
+   };
   ?>
+
     <div class="jumbotron bg-secondary mt-2 mb-4 p-3">
         <h1 class="text-center">User Sign Up Page</h1>
     </div>
