@@ -9,10 +9,10 @@
 <body>
   <?php 
    if(isset ($_GET['passwordmatcherr']))  {
-    echo '<script>alert( "The two passwords do not match")</script>';
-   }
+ echo '<div class="alert alert-danger">The two passwords do not match</div>
+ }
    if (isset ($_GET['alreadyregisteredmailerr'])) {
-    echo '<script> alert("This Email is already registered with us Try Using another Email")</script>';
+        echo '<div class="alert alert-danger">This Email is already registered with us Try Using another Email</div>';
 
    }
   ?>
