@@ -1,6 +1,5 @@
 <?php include 'db.php';
-    include_once 'loginUser.php';
-
+include_once 'loginUser.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -38,7 +37,7 @@ VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . 
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-    logger();
+    logger($email, $password);
 
     mysqli_close($conn);
 }

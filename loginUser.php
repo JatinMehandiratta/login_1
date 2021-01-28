@@ -6,11 +6,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-function logger()
+function logger($email, $password)
 {
     global $conn;
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $conn->real_escape_string($_POST['password']);
     $query = "SELECT * FROM user_table WHERE BINARY email= '$email' AND BINARY password= '$password' ";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -19,11 +17,10 @@ function logger()
     if ($count == 1) {
         $_SESSION["id"] = $row['id'];
         $_SESSION["name"] = $row['firstname'];
-        echo  '<div class="alert alert-success">Log In Successfull</div>';
     }
-}
-if (isset($_SESSION["id"])) {
-    header("Location:index.php");
+    if (isset($_SESSION["id"])) {
+        header("Location:index.php");
+    }
 }
 
 if (isset($_POST['login_user'])) {
@@ -42,5 +39,5 @@ if (isset($_POST['login_user'])) {
     } else {
         header('location: login.php?invalidLogin=true');
     }
-    logger();
+    logger($email, $password);
 }

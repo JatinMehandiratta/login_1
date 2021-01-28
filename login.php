@@ -1,10 +1,19 @@
     <?php include 'header.php';
+    session_start();
+
+    if (isset($_SESSION['id'])) {
+        header('Location: index.php');
+        exit;
+    }
 
     if (isset($_GET['notregiterederr'])) {
         echo '<div class="alert alert-danger">This User is not registered with us ! Please Register First</div>';
     };
     if (isset($_GET['invalidLogin'])) {
         echo '<div class="alert alert-danger">Wrong username/password combination</div>';
+    };
+    if (isset($_GET['logoutsuccess'])) {
+        echo '<div class="alert alert-success">Log Out Successfull</div>';
     };
     ?>
     <div class="jumbotron bg-secondary mt-2 mb-4 p-3">
