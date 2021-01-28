@@ -1,4 +1,6 @@
 <?php include 'db.php';
+    include_once 'loginUser.php';
+
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -32,11 +34,10 @@ if (isset($_POST['reg_user'])) {
     $sql = "INSERT INTO user_table (firstname, lastname, age,email,gender,occupation,password ,confirm_password)
 VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . "','" . $gender . "','" . $occupation . "','" . $password . "','" . $confirmPassword . "')";
     if (mysqli_query($conn, $sql)) {
-        echo '<script> alert ("You have successfully Signed up")</script>';
+        echo '<div class="alert alert-success">You have successfully Signed up")</div>';
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-    include_once 'loginUser.php';
     logger();
 
     mysqli_close($conn);

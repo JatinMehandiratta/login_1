@@ -1,12 +1,12 @@
 <?php include 'header.php';
-
+session_start();
 
 ?>
 <div class="header">
     <h2>Home Page</h2>
 </div>
 <div class="content">
-    </h3>Welcome User</h3>
+    </h3>Welcome <?php echo $_SESSION["name"]; ?></h3>
 </div>
 
 <!-- logged in user information -->
