@@ -1,6 +1,5 @@
-<?php include 'db.php'; ?>
-<?php
-session_start();
+<?php include 'db.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -26,18 +25,19 @@ if (isset($_POST['reg_user'])) {
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
-    if ($row['email'] === $email) {
+    if ($email == isset($row['email'])) {
         header('location: signup.php?alreadyregisteredmailerr=true');
         exit;
-    } else {
-        $sql = "INSERT INTO user_table (firstname, lastname, age,email,gender,occupation,password ,confirm_password)
-VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . "','" . $gender . "','" . $occupation . "','" . $password . "','" . $confirmPassword . "')";
-        if (mysqli_query($conn, $sql)) {
-            echo '<script> alert ("You have successfully Signed up")</script>';
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-        mysqli_close($conn);
     }
+    $sql = "INSERT INTO user_table (firstname, lastname, age,email,gender,occupation,password ,confirm_password)
+VALUES ('" . $firstname . "','" . $lastname . "', '" . $age . "', '" . $email . "','" . $gender . "','" . $occupation . "','" . $password . "','" . $confirmPassword . "')";
+    if (mysqli_query($conn, $sql)) {
+        echo '<script> alert ("You have successfully Signed up")</script>';
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    include_once 'loginUser.php';
+    logger();
+
+    mysqli_close($conn);
 }
-?>
