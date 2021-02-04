@@ -6,16 +6,16 @@ function edit_row(id) {
     var gender = document.getElementById("gender_val" + id).innerHTML;
     var occupation = document.getElementById("occu_val" + id).innerHTML;
 
-    document.getElementById("fname_val" + id).innerHTML = "<input type='text' id='fname_text" + id + "' value='" + fname + "'required>";
-    document.getElementById("lname_val" + id).innerHTML = "<input type='text' id='lname_text" + id + "' value='" + lname + "'required>";
-    document.getElementById("age_val" + id).innerHTML = "<input type='number' id='age_text" + id + "' value='" + age + "'required>";
-    document.getElementById("email_val" + id).innerHTML = "<input type='email' id='email_text" + id + "' value='" + email + "'required>";
-    document.getElementById("gender_val" + id).innerHTML = "<input type='text' id='gender_text" + id + "' value='" + gender + "'required>";
-    document.getElementById("occu_val" + id).innerHTML = "<input type='text' id='occu_text" + id + "' value='" + occupation + "'required>";
-    
-    
+    document.getElementById("fname_val" + id).innerHTML = "<input type='text' id='fname_text" + id + "' value='" + fname + "'>";
+    document.getElementById("lname_val" + id).innerHTML = "<input type='text' id='lname_text" + id + "' value='" + lname + "'>";
+    document.getElementById("age_val" + id).innerHTML = "<input type='number' id='age_text" + id + "' value='" + age + "'>";
+    document.getElementById("email_val" + id).innerHTML = "<input type='email' id='email_text" + id + "' value='" + email + "'>";
+    document.getElementById("gender_val" + id).innerHTML = "<input type='text' id='gender_text" + id + "' value='" + gender + "'>";
+    document.getElementById("occu_val" + id).innerHTML = "<input type='text' id='occu_text" + id + "' value='" + occupation + "'>";
+
+
     document.getElementById("edit_button" + id).style.display = "none";
-   document.getElementById("save_button" + id).style.display = "block";
+    document.getElementById("save_button" + id).style.display = "block";
 }
 
 function save_row(id) {
@@ -25,40 +25,85 @@ function save_row(id) {
     var email = document.getElementById("email_text" + id).value;
     var gender = document.getElementById("gender_text" + id).value;
     var occupation = document.getElementById("occu_text" + id).value;
-     console.log("ajaxhdfvb");
-    $.ajax
-        ({
-            type: 'post',
-            url: 'modifyRecord.php',
-            data: {
-                edit_row: 'edit_row',
-                row_id: id,
-                fname_val: fname,
-                lname_val: lname,
-                age_val: age,
-                email_val: email,
-                gender_val: gender,
-                occu_val: occupation    
-            },
-            success: function (response) {
-                if (response == "success") {
-                    document.getElementById("fname_val" + id).innerHTML = fname;
-                    document.getElementById("lname_val" + id).innerHTML = lname;
-                    document.getElementById("age_val" + id).innerHTML = age;
-                    document.getElementById("email_val" + id).innerHTML = email;
-                    document.getElementById("gender_val" + id).innerHTML = gender;
-                    document.getElementById("occu_val" + id).innerHTML = occupation;
 
-                    document.getElementById("edit_button" + id).style.display = "block";
-                    document.getElementById("save_button" + id).style.display = "none";
-                    alert("This row has been edited successfully");
+
+    function validate() {
+        function validateemail()  
+        {  
+        var x= email;  
+        var atposition=x.indexOf("@");  
+        var dotposition=x.lastIndexOf(".");  
+        if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+          alert("Please enter a valid e-mail address");  
+          return false;
+          }return true;
+        }
+        if (fname == null || fname == "") {
+            alert("Firstname is mandatory");
+            return false;
+        } if (lname == null || lname == "") {
+            alert("Lastname is mandatory");
+            return false;
+        } if (age == NaN || age == "") {
+            alert("Age is mandatory");
+            return false;
+        } if (email == null || email == "") {
+            alert("Email is mandatory");
+            return false;
+        }
+         if (email == null || email ==""  ) {
+            alert("Email is mandatory");
+            return false;
+        }if(!validateemail()){
+            return false;
+        }
+        if (gender == null || gender == "") {
+            alert("Gender is mandatory");
+            return false;
+        } if (occupation == null || occupation == "") {
+            alert("Occupation is mandatory");
+            return false;
+        }return true;
+    } 
+    if (validate()==true){
+        
+    
+        $.ajax
+            ({
+                type: 'post',
+                url: 'modifyRecord.php',
+                data: {
+                    edit_row: 'edit_row',
+                    row_id: id,
+                    fname_val: fname,
+                    lname_val: lname,
+                    age_val: age,
+                    email_val: email,
+                    gender_val: gender,
+                    occu_val: occupation
+                },
+                success: function (response) {
+                    if (response == "success") {
+                        document.getElementById("fname_val" + id).innerHTML = fname;
+                        document.getElementById("lname_val" + id).innerHTML = lname;
+                        document.getElementById("age_val" + id).innerHTML = age;
+                        document.getElementById("email_val" + id).innerHTML = email;
+                        document.getElementById("gender_val" + id).innerHTML = gender;
+                        document.getElementById("occu_val" + id).innerHTML = occupation;
+
+                        document.getElementById("edit_button" + id).style.display = "block";
+                        document.getElementById("save_button" + id).style.display = "none";
+                        alert("This row has been edited successfully");
+                    }
                 }
-            }
-        });
-}
+            });
+        }
+    }
+
+
 
 function delete_row(id) {
-   
+
     $.ajax
         ({
             type: 'post',
