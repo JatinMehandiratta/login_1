@@ -69,11 +69,13 @@ form,
   border: 1px solid #3c763d;
   margin-bottom: 20px;
 }
-.alert  {
-    position: relative;
-    padding : 2px 1px ;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
+.alert {
+  position: relative;
+  padding: 2px 1px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
-
+#save_button {
+  visibility: "hidden";
+}

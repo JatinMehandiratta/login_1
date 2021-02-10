@@ -165,7 +165,6 @@
               </div>
               <div class="text-center mt-4">
                   <button type="submit" class="btn btn-primary" name="reg_user">Submit</button>
-                  <button type="reset" class="btn btn-primary  ml-2">Reset</button>
               </div>
           </div>
       </form>
