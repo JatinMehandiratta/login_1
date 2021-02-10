@@ -21,12 +21,11 @@ if (isset($_POST['edit_row'])) {
 }
 
 
-if (isset($_POST['delete_row'])) {
-    $row_no = $_POST['row_id'];
+if (isset($_GET['del_id'])) {
+    $row_no = $_GET['del_id'];
     $del_query = "DELETE from user_table where id='$row_no'";
     if (mysqli_query($conn, $del_query)) {
-        echo "success";
-        exit();
+        header("location: index.php?deleted");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }

@@ -6,11 +6,9 @@ include 'modify_record.php';
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
 }
-if (isset($_GET['updatesuccess'])) {
-    echo  '<div class="alert alert-success">Record Updated Successfully</div>';
-}
-if (isset($_GET['deletesuccess'])) {
-    echo  '<div class="alert alert-danger">Record Deleted Successfully</div>';
+if (isset($_GET['deleted'])) {
+    $id = $_GET['del_id'];
+    echo "<script>alert('Row has been Deleted Successfully')</script>";
 }
 ?>
 <div class="container-fluid mb-4">
@@ -25,7 +23,6 @@ if (isset($_GET['deletesuccess'])) {
                                                                 echo $_GET['search'];
                                                             } ?>" autocomplete="off">
                     <button type="submit" class="btm btn-success">Search</button>
-
                 </div>
             </div>
         </form>
@@ -53,7 +50,7 @@ if (isset($_GET['deletesuccess'])) {
                 <?php
                 $results_per_page = 5;
                 if (isset($_GET['search'])) {
-                $search = htmlspecialchars($_GET['search']);
+                    $search = htmlspecialchars($_GET['search']);
                     if (isset($_GET['find'])) {
                         $find = $_GET['find'];
                     } else {
@@ -64,13 +61,12 @@ if (isset($_GET['deletesuccess'])) {
                     $search_result = mysqli_num_rows($searchresult);
                     $slastpage = ceil($search_result / $results_per_page);
                     $search_first_result = ($find - 1) * $results_per_page;
-
                     if ($find > $slastpage) {
                         $find = $slastpage;
-                    } // if
+                    }
                     if ($find < 1) {
                         $find = 1;
-                    } // if
+                    }
                     $searchquery = mysqli_query($conn, "SELECT * FROM `user_table` WHERE `id` LIKE '%" . $search . "%' or `firstname` LIKE '%" . $search . "%' or `lastname` LIKE '%" . $search . "%' or `age` LIKE '%" . $search . "%' or `email` LIKE '%" . $search . "%' or `gender` LIKE '%" . $search . "%' or `occupation` LIKE '%" . $search . "%' LIMIT " . $search_first_result . ',' . $results_per_page)
                         or die(mysqli_error($conn));
                     while ($row = mysqli_fetch_assoc($searchquery)) { ?>
@@ -91,13 +87,9 @@ if (isset($_GET['deletesuccess'])) {
                 } else {
                     $query = "select * from user_table";
                     $result = mysqli_query($conn, $query);
-
-
                     $number_of_result = mysqli_num_rows($result);
-
                     //determine the total number of pages available  
                     $lastpage = ceil($number_of_result / $results_per_page);
-
                     //determine which page number visitor is currently on  
                     if (isset($_GET['page'])) {
                         $page = $_GET['page'];
@@ -107,8 +99,6 @@ if (isset($_GET['deletesuccess'])) {
                     $page_first_result = ($page - 1) * $results_per_page;
                     $allquery = mysqli_query($conn, "SELECT * FROM `user_table`  LIMIT " . $page_first_result . ',' . $results_per_page)
                         or die(mysqli_error($conn));
-
-
                     while ($row = mysqli_fetch_assoc($allquery)) { ?>
                         <tr id="row<?php echo $row['id']; ?>">
                             <td id="fname_val<?php echo $row['id']; ?>"><?php echo $row['firstname'] ?></td>
@@ -150,7 +140,6 @@ if (isset($_GET['deletesuccess'])) {
             echo " <a href='{$_SERVER['PHP_SELF']}?find=$slastpage & search=$search'>LAST</a> ";
         } // if
     } else {
-       
         if ($page == 1) {
             echo "  ";
         } else {
@@ -169,8 +158,6 @@ if (isset($_GET['deletesuccess'])) {
     }
     ?>
 </div>
-
-
 <script type="text/javascript">
     $(function() {
         $("#save_btn" + id).show();
@@ -187,4 +174,3 @@ if (isset($_GET['deletesuccess'])) {
 </body>
 
 </html>
-
