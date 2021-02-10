@@ -1,5 +1,5 @@
 <?php
-require('db.php');
+require('db.php');;
 
 if (isset($_POST['edit_row'])) {
     $row_id = ($_POST['row_id']);

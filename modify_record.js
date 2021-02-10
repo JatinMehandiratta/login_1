@@ -1,3 +1,5 @@
+
+
 function edit_row(id) {
     var fname = document.getElementById("fname_val" + id).innerHTML;
     var lname = document.getElementById("lname_val" + id).innerHTML;
@@ -26,18 +28,18 @@ function save_row(id) {
     var gender = document.getElementById("gender_text" + id).value;
     var occupation = document.getElementById("occu_text" + id).value;
 
+    function validateemail() {
+        var x = email;
+        var atposition = x.indexOf("@");
+        var dotposition = x.lastIndexOf(".");
+        if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= x.length) {
+            alert("Please enter a valid e-mail address");
+            return false;
+        } return true;
+    }
+
 
     function validate() {
-        function validateemail()  
-        {  
-        var x= email;  
-        var atposition=x.indexOf("@");  
-        var dotposition=x.lastIndexOf(".");  
-        if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-          alert("Please enter a valid e-mail address");  
-          return false;
-          }return true;
-        }
         if (fname == null || fname == "") {
             alert("Firstname is mandatory");
             return false;
@@ -51,10 +53,10 @@ function save_row(id) {
             alert("Email is mandatory");
             return false;
         }
-         if (email == null || email ==""  ) {
+        if (email == null || email == "") {
             alert("Email is mandatory");
             return false;
-        }if(!validateemail()){
+        } if (!validateemail()) {
             return false;
         }
         if (gender == null || gender == "") {
@@ -63,16 +65,19 @@ function save_row(id) {
         } if (occupation == null || occupation == "") {
             alert("Occupation is mandatory");
             return false;
-        }return true;
-    } 
-    if (validate()==true){
-        
-    
+        } return true;
+    }
+    if (validate() == true) {
+
+
         $.ajax
             ({
                 type: 'post',
                 url: 'modifyRecord.php',
                 data: {
+                    bStateSave: true,
+                    processing: true,
+                    serverSide: true,
                     edit_row: 'edit_row',
                     row_id: id,
                     fname_val: fname,
@@ -93,12 +98,12 @@ function save_row(id) {
 
                         document.getElementById("edit_button" + id).style.display = "block";
                         document.getElementById("save_button" + id).style.display = "none";
-                        alert("This row has been edited successfully");
+                        alert("This row with id " + id + "edited successfully");
                     }
                 }
             });
-        }
     }
+}
 
 
 
@@ -108,16 +113,19 @@ function delete_row(id) {
         ({
             type: 'post',
             url: 'modifyRecord.php',
+            bStateSave: true,
+            processing: true,
+            serverSide: true,
             data: {
                 delete_row: 'delete_row',
                 row_id: id,
             },
             success: function (response) {
+                console.log(response, "ajax");
                 if (response == "success") {
                     var row = document.getElementById("row" + id);
                     row.parentNode.removeChild(row);
-                    window.location = "index.php";
-                    console.log("deleted Successfully");
+                    alert("Row with id  " + id + " deleted successfully");
 
                 }
             }
