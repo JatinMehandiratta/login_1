@@ -134,11 +134,6 @@ if (isset($_GET['deletesuccess'])) {
     <?php
     if (isset($_GET['search'])) {
         $search = $_GET['search'];
-        if (isset($_GET['find'])) {
-           $find = $_GET['find'];
-        } else {
-            $find = 1;
-        }
         if ($find == 1) {
             echo "  ";
         } else {
@@ -155,11 +150,7 @@ if (isset($_GET['deletesuccess'])) {
             echo " <a href='{$_SERVER['PHP_SELF']}?find=$slastpage & search=$search'>LAST</a> ";
         } // if
     } else {
-        if (isset($_GET['page'])) {
-            $page = $_GET['page'];
-        } else {
-            $page = 1;
-        }
+       
         if ($page == 1) {
             echo "  ";
         } else {
