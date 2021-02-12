@@ -79,3 +79,6 @@ form,
 #save_button {
   visibility: "hidden";
 }
+tr .highlight {
+	background-color: #f9fafb;
+}
