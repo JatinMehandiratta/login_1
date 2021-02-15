@@ -115,57 +115,33 @@ if (isset($_GET['search'])) {
             $up_or_down = str_replace(array('ASC', 'DESC'), array('up', 'down'), $sort_order);
             $asc_or_desc = $sort_order == 'ASC' ? 'desc' : 'asc';
             $add_class = ' class="highlight"';
-              if (isset($_GET['results'])) { 
-                $results_per_page=$_GET['results'];
-                if(isset($_GET['search'])){ ?>
-                 <thead class="thead-light">
-                    <tr>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page;?>&column=firstname&order=<?php echo $asc_or_desc; ?>">Firstname<i class="fas fa-sort<?php echo $column == 'firstname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page;?>&column=lastname&order=<?php echo $asc_or_desc; ?>">Lastname<i class="fas fa-sort<?php echo $column == 'lastname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page;?>&column=age&order=<?php echo $asc_or_desc; ?>">Age<i class="fas fa-sort<?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page;?>&column=email&order=<?php echo $asc_or_desc; ?>">Email<i class="fas fa-sort<?php echo $column == 'email' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page;?>&column=gender&order=<?php echo $asc_or_desc; ?>">Gender<i class="fas fa-sort<?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page;?>&column=occupation&order=<?php echo $asc_or_desc; ?>">Occupation<i class="fas fa-sort<?php echo $column == 'occupation' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <?php }else { ?>
-                <thead class="thead-light">
-                    <tr>
-                        <th><a href="index.php?page=<?php echo $page;?>&results=<?php echo $results_per_page;?>&column=firstname&order=<?php echo $asc_or_desc; ?>">Firstname<i class="fas fa-sort<?php echo $column == 'firstname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&results=<?php echo $results_per_page;?>&column=lastname&order=<?php echo $asc_or_desc; ?>">Lastname<i class="fas fa-sort<?php echo $column == 'lastname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&results=<?php echo $results_per_page;?>&column=age&order=<?php echo $asc_or_desc; ?>">Age<i class="fas fa-sort<?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&results=<?php echo $results_per_page;?>&column=email&order=<?php echo $asc_or_desc; ?>">Email<i class="fas fa-sort<?php echo $column == 'email' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&results=<?php echo $results_per_page;?>&column=gender&order=<?php echo $asc_or_desc; ?>">Gender<i class="fas fa-sort<?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&results=<?php echo $results_per_page;?>&column=occupation&order=<?php echo $asc_or_desc; ?>">Occupation<i class="fas fa-sort<?php echo $column == 'occupation' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <?php } } else if (isset($_GET['search'])) { ?>
-                    <thead class="thead-light">
-                    <tr>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>& column=firstname&order=<?php echo $asc_or_desc; ?>">Firstname<i class="fas fa-sort<?php echo $column == 'firstname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&column=lastname&order=<?php echo $asc_or_desc; ?>">Lastname<i class="fas fa-sort<?php echo $column == 'lastname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&column=age&order=<?php echo $asc_or_desc; ?>">Age<i class="fas fa-sort<?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&column=email&order=<?php echo $asc_or_desc; ?>">Email<i class="fas fa-sort<?php echo $column == 'email' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&column=gender&order=<?php echo $asc_or_desc; ?>">Gender<i class="fas fa-sort<?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&column=occupation&order=<?php echo $asc_or_desc; ?>">Occupation<i class="fas fa-sort<?php echo $column == 'occupation' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-            <?php   }  else { ?>
-                <thead class="thead-light">
-                    <tr>
-                        <th><a href="index.php?page=<?php echo $page;?>&column=firstname&order=<?php echo $asc_or_desc; ?>">Firstname<i class="fas fa-sort<?php echo $column == 'firstname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&column=lastname&order=<?php echo $asc_or_desc; ?>">Lastname<i class="fas fa-sort<?php echo $column == 'lastname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&column=age&order=<?php echo $asc_or_desc; ?>">Age<i class="fas fa-sort<?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>& column=email&order=<?php echo $asc_or_desc; ?>">Email<i class="fas fa-sort<?php echo $column == 'email' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&column=gender&order=<?php echo $asc_or_desc; ?>">Gender<i class="fas fa-sort<?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th><a href="index.php?page=<?php echo $page;?>&column=occupation&order=<?php echo $asc_or_desc; ?>">Occupation<i class="fas fa-sort<?php echo $column == 'occupation' ? '-' . $up_or_down : ''; ?>"></i></a></th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-            <?php } ?>
+            if(isset($_GET['search'])){
+                $results_per_page= $_GET['results'];
+                 ?>
+            <thead class="thead-light">
+                <tr>
+                    <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page; ?>& column=firstname&order=<?php echo $asc_or_desc; ?>">Firstname<i class="fas fa-sort<?php echo $column == 'firstname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page; ?>&column=lastname&order=<?php echo $asc_or_desc; ?>">Lastname<i class="fas fa-sort<?php echo $column == 'lastname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page; ?>&column=age&order=<?php echo $asc_or_desc; ?>">Age<i class="fas fa-sort<?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page; ?>&column=email&order=<?php echo $asc_or_desc; ?>">Email<i class="fas fa-sort<?php echo $column == 'email' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page; ?>&column=gender&order=<?php echo $asc_or_desc; ?>">Gender<i class="fas fa-sort<?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?find=<?php echo $find;?>&search=<?php echo $search;?>&results=<?php echo $results_per_page; ?>&column=occupation&order=<?php echo $asc_or_desc; ?>">Occupation<i class="fas fa-sort<?php echo $column == 'occupation' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        <?php } else { ?>
+            <thead class="thead-light">
+                <tr>
+                    <th><a href="index.php?page=<?php echo $page;?>& column=firstname&order=<?php echo $asc_or_desc; ?>">Firstname<i class="fas fa-sort<?php echo $column == 'firstname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?page=<?php echo $page;?>& column=lastname&order=<?php echo $asc_or_desc; ?>">Lastname<i class="fas fa-sort<?php echo $column == 'lastname' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?page=<?php echo $page;?>& column=age&order=<?php echo $asc_or_desc; ?>">Age<i class="fas fa-sort<?php echo $column == 'age' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?page=<?php echo $page;?>& column=email&order=<?php echo $asc_or_desc; ?>">Email<i class="fas fa-sort<?php echo $column == 'email' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?page=<?php echo $page;?>& column=gender&order=<?php echo $asc_or_desc; ?>">Gender<i class="fas fa-sort<?php echo $column == 'gender' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th><a href="index.php?page=<?php echo $page;?>& column=occupation&order=<?php echo $asc_or_desc; ?>">Occupation<i class="fas fa-sort<?php echo $column == 'occupation' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        <?php } ?>
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($query)) { ?>
                     <tr id="row<?php echo $row['id']; ?>">
@@ -187,8 +163,6 @@ if (isset($_GET['search'])) {
     </div>
     <div class="text-center">
         <?php
-        if (isset($_GET['results'])) {
-            $results_per_page = $_GET['results'];
             if(isset($_GET['search'])){
                 $search = $_GET['search'];
                 if(isset($_GET['find'])) {
@@ -211,43 +185,7 @@ if (isset($_GET['search'])) {
                     echo "<a href='{$_SERVER['PHP_SELF']}?find=$nextpage&search=$search&results=$results_per_page'>NEXT</a>";
                     echo " <a href='{$_SERVER['PHP_SELF']}?find=$slastpage&search=$search&results=$results_per_page'>LAST</a> ";
                 } // if
-            
-            }else {
-            if ($page == 1) {
-                echo "  ";
-            } else {
-                echo " <a href='{$_SERVER['PHP_SELF']}?page=1&results=$results_per_page'>FIRST</a> ";
-                $prevpage = $page - 1;
-                echo " <a href='{$_SERVER['PHP_SELF']}?page=$prevpage&results=$results_per_page'>PREV</a> ";
             }
-            echo " ( Page $page of $lastpage ) ";
-            if ($page == $lastpage) {
-                echo "  ";
-            } else {
-                $nextpage = $page + 1;
-                echo " <a href='{$_SERVER['PHP_SELF']}?page=$nextpage&results=$results_per_page'>NEXT</a> ";
-                echo " <a href='{$_SERVER['PHP_SELF']}?page=$lastpage&results=$results_per_page'>LAST</a> ";
-            } // if
-        }
-
-        // } else  if (isset($_GET['search'])) {
-        //     $search = $_GET['search'];
-        //     if ($find == 1) {
-        //         echo "  ";
-        //     } else {
-        //         echo " <a href='{$_SERVER['PHP_SELF']}?find=1&search=$search'>FIRST</a> ";
-        //         $prevpage = $find - 1;
-        //         echo " <a href='{$_SERVER['PHP_SELF']}?find=$prevpage&search=$search'>PREV</a> ";
-        //     }
-        //     echo " ( Page $find of $slastpage ) ";
-        //     if ($find == $slastpage) {
-        //         echo "  ";
-        //     } else {
-        //         $nextpage = $find + 1;
-        //         echo "<a href='{$_SERVER['PHP_SELF']}?find=$nextpage&search=$search'>NEXT</a>";
-        //         echo " <a href='{$_SERVER['PHP_SELF']}?find=$slastpage&search=$search'>LAST</a> ";
-        //     }
-        }
          else {
             if ($page == 1) {
                 echo "  ";
