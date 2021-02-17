@@ -65,24 +65,13 @@ if (isset($_GET['search'])) {
                     <label for="num_rows">Number of rows</label>
                     <select name="results" required>
                         <option value="" disabled selected>Choose option</option>
-                        <option value="5" <?php if ($_GET['results'] == '5') {
-                                                echo 'selected';
-                                            } ?>>5</option>
-                        <option value="10" <?php if ($_GET['results'] == '10') {
-                                                echo 'selected';
-                                            } ?>>10</option>
-                        <option value="15" <?php if ($_GET['results'] == '15') {
-                                                echo 'selected';
-                                            } ?>>15</option>
-                        <option value="20" <?php if ($_GET['results'] == '20') {
-                                                echo 'selected';
-                                            } ?>>20</option>
-                        <option value="25" <?php if ($_GET['results'] == '25') {
-                                                echo 'selected';
-                                            } ?>>25</option>
-                        <option value="30" <?php if ($_GET['results'] == '30') {
-                                                echo 'selected';
-                                            } ?>>30</option>
+                        <?php 
+                        $i=0;
+                        while($i <= $number_of_result){
+                            $i=$i+5;
+                            echo "<option value=$i>".$i."<option>";
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="row mt-3">
