@@ -63,7 +63,7 @@ if (isset($_GET['search'])) {
                 </div>
                 <div class="col-sm-6">
                     <label for="num_rows">Number of rows</label>
-                    <select name="results" required <?php  echo $_GET['results']; ?>>
+                    <select name="results" required >
                         <option value="" disabled selected>Choose option</option>
                         <?php 
                         $i=0;
